@@ -15,11 +15,15 @@ function SelectTypeQuestion() {
   } = useContext(QuizContext);
   let question: Nullable<Question> | undefined;
   let hasImages = false;
+  let hasOptionDescriptions = false;
   let instructions;
 
   if (state?.quiz.currentQuestion) {
     question = state.quiz.currentQuestion.next_question;
     hasImages = question?.options.some((option: QuestionOption) => option.images);
+    hasOptionDescriptions =
+      question?.type === QuestionTypes.MultipleSelect &&
+      question.options.some((option: QuestionOption) => Boolean(option.description));
     instructions =
       (question?.type === QuestionTypes.MultipleSelect ||
         question.type === QuestionTypes.MultipleFilterValues) &&
@@ -44,13 +48,18 @@ function SelectTypeQuestion() {
             !hasImages
               ? 'cio-question-options-container-text-only'
               : 'cio-question-options-container'
-          }`}>
+          }${hasOptionDescriptions ? ' cio-question-options-container-with-descriptions' : ''}`}>
           {question?.options?.map(
             (option: QuestionOption) =>
               getSelectInputProps && (
                 <div {...getSelectInputProps(option)}>
                   {option.images ? renderImages(option.images, 'cio-question-option-image') : ''}
                   <div className='cio-question-option-value'>{option?.value}</div>
+                  {hasOptionDescriptions && option.description ? (
+                    <div className='cio-question-option-description'>{option.description}</div>
+                  ) : (
+                    ''
+                  )}
                 </div>
               )
           )}

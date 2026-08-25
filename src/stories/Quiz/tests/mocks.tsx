@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Question } from '@constructor-io/constructorio-client-javascript/lib/types';
+import { Question } from '@constructor-io/constructorio-client-javascript/lib/types/quizzes';
 import { quizSessionStateKey, RequestStates } from '../../../constants';
 import {
   Callbacks,
@@ -120,6 +120,7 @@ export const getMockState = (question?: Question, options?: MockOptions): QuizRe
       isMultipleQuestion: question?.type === QuestionTypes.MultipleSelect,
       isSingleFilterQuestion: question?.type === QuestionTypes.SingleFilterValue,
       isMultipleFilterQuestion: question?.type === QuestionTypes.MultipleFilterValues,
+      isFreeFormQuestion: question?.type === QuestionTypes.FreeForm,
       isSelectQuestion: question?.type === QuestionTypes.SingleSelect,
       total_questions: 1,
     },
