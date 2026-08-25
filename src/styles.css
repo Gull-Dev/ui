@@ -414,9 +414,7 @@
   text-align: center;
   margin: auto 0;
 }
-.cio-quiz .cio-question-options-container-with-descriptions .cio-question-option-value,
-.cio-quiz .cio-question-options-container-text-only.cio-question-options-container-with-descriptions
-  .cio-question-option-value {
+.cio-quiz .cio-question-options-container-with-descriptions .cio-question-option-value {
   margin: 0;
 }
 
@@ -424,6 +422,7 @@
 .cio-quiz .cio-question-option-description {
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   margin-top: 0.5rem;
