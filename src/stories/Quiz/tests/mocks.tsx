@@ -29,6 +29,7 @@ export const getMockQuestion = (type: `${QuestionTypes}`) => ({
   cta_text: 'Continue',
   type,
   input_placeholder: 'Answer here...',
+  is_skippable: false,
 });
 
 const getMockImages = () => ({

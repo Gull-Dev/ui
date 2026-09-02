@@ -26,6 +26,13 @@ const multipleSelectQuestionWithDescriptions = {
   ...getMockQuestion(QuestionTypes.MultipleSelect),
   options: questionOptionsWithDescriptions,
 };
+const multipleSelectQuestionWithSomeDescriptions = {
+  ...getMockQuestion(QuestionTypes.MultipleSelect),
+  options: questionOptionsWithDescriptions.map(({ description, ...option }, index) => ({
+    ...option,
+    ...(index % 2 === 0 && { description }),
+  })),
+};
 const multipleSelectQuestionWithImagesAndDescriptions = {
   ...getMockQuestionWithImage(QuestionTypes.MultipleSelect),
   options: questionOptionsWithImages.map((option, index) => ({
@@ -71,6 +78,15 @@ export const WithOptionDescriptions: Story = {
     (story) =>
       QuestionTypePrimaryDecorator(story, [
         multipleSelectQuestionWithDescriptions as SelectQuestion,
+      ]),
+  ],
+};
+
+export const WithSomeOptionDescriptions: Story = {
+  decorators: [
+    (story) =>
+      QuestionTypePrimaryDecorator(story, [
+        multipleSelectQuestionWithSomeDescriptions as SelectQuestion,
       ]),
   ],
 };
