@@ -119,9 +119,9 @@ describe(`${SelectTypeQuestion.name} client`, () => {
     });
 
     it('renders the description of the options that have one', () => {
-      const { container } = render(<Subject />);
-      expect(screen.getByText('OPTION DESCRIPTION')).toBeInTheDocument();
-      expect(container.querySelectorAll('.cio-question-option-description')).toHaveLength(1);
+      render(<Subject />);
+      expect(screen.getAllByText('VALUE')).toHaveLength(2);
+      expect(screen.getAllByText('OPTION DESCRIPTION')).toHaveLength(1);
     });
   });
 
@@ -141,9 +141,9 @@ describe(`${SelectTypeQuestion.name} client`, () => {
     });
 
     it('does not render option descriptions inside the option cards', () => {
-      const { container } = render(<Subject />);
+      render(<Subject />);
+      expect(screen.getAllByText('VALUE')).toHaveLength(2);
       expect(screen.queryByText('OPTION DESCRIPTION')).not.toBeInTheDocument();
-      expect(container.querySelectorAll('.cio-question-option-description')).toHaveLength(0);
     });
   });
 
